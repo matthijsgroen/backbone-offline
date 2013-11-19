@@ -1,5 +1,22 @@
 BackboneOffline::Application.routes.draw do
+
+  get "/application.appcache" => proc { |env|
+    [200, { 'Content-Type' => 'text/cache-manifest' }, [<<-APPCACHE.strip_heredoc]]
+      CACHE MANIFEST
+      # 2013-11-19T06:29
+
+      CACHE:
+      /
+      /assets/application.js
+      /assets/application.css
+
+      NETWORK:
+      *
+    APPCACHE
+  }
+
   root 'welcome#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
