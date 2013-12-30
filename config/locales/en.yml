@@ -20,4 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  messages:
+    header:
+      zero: 'There are no messages'
+      one: 'There is 1 message'
+      other: 'There are %{count} messages'
+
