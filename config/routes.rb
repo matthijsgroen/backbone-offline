@@ -15,6 +15,10 @@ BackboneOffline::Application.routes.draw do
     #APPCACHE
   #}
 
+  namespace :api do
+    resources :messages, only: :index
+  end
+
   root 'welcome#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -8,7 +8,6 @@ class OfflineMessenger.Routers.MessagesRouter extends Backbone.Router
 
   index: ->
     @collection.fetch()
-    console.log 'rendering index of messages'
     view = new OfflineMessenger.Views.MessageListView { @collection }
     $('body').append(view.render().el)
 
