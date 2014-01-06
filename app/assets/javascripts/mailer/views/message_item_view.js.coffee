@@ -6,7 +6,8 @@ class OfflineMessenger.Views.MessageItemView extends Backbone.View
 
   render: ->
     presenter =
-      content: marked(@model.get('content'))
+      #content: marked(@model.get('content'))
+      content: marked @model.get('content')
 
     @$el.html @template presenter
 
