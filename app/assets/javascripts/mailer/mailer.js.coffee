@@ -3,6 +3,7 @@
 #= require hamlcoffee
 #= require i18n
 #= require i18n/translations
+#= require marked/lib/marked
 #
 #= require_self
 #

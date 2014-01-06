@@ -4,3 +4,6 @@
 [submodule "vendor/assets/javascripts/underscore"]
 	path = vendor/assets/javascripts/underscore
 	url = https://github.com/jashkenas/underscore.git
+[submodule "vendor/assets/javascripts/marked"]
+	path = vendor/assets/javascripts/marked
+	url = https://github.com/chjj/marked.git
