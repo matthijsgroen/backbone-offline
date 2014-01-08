@@ -1,0 +1,37 @@
+.mod-posts {
+  h1 {
+    font-size: 1em;
+    background: hsl(120deg, 20%, 80%);
+    padding: 0.5em;
+    margin-bottom: 0.5em;
+  }
+}
+
+.mod-post {
+  border: 2px solid hsl(120deg, 100%, 30%);
+  background-color: hsl(120deg, 30%, 90%);
+  padding: 0.5em;
+  margin: {
+    top: 1em;
+    bottom: 1em;
+  }
+
+  ul, ol {
+    padding: {
+      top: 0.5em;
+      bottom: 0.5em;
+      left: 2em;
+    }
+  }
+  ul {
+    list-style-type: disc;
+  }
+  ol {
+    list-style-type: decimal;
+  }
+
+  &.is-new {
+    border: 2px solid hsl(220deg, 100%, 30%);
+  }
+
+}

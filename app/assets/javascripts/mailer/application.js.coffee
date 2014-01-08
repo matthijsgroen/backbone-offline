@@ -15,7 +15,7 @@ class OfflineMessenger.Application
 
     $ =>
       @trigger 'application:ready', world
-      Backbone.history?.start(pushState: yes) unless Backbone.History.started
+      Backbone.history?.start(pushState: no) unless Backbone.History.started
       @initialized = yes
 
 _.extend OfflineMessenger.Application::, Backbone.Events
