@@ -1,9 +1,12 @@
 #= require mailer/templates/message_item
 
 class OfflineMessenger.Views.MessageItemView extends Backbone.View
-  template: JST['mailer/templates/message_item']
+  template: JST['message_item']
   tagName: 'li'
   className: 'mod-post'
+
+  initialize: ->
+    @listenTo @model, 'change:content', @render
 
   render: ->
     @$el.toggleClass('is-new', @model.isNew())

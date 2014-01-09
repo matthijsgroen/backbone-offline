@@ -21,5 +21,8 @@ module BackboneOffline
     # config.i18n.default_locale = :de
 
     config.assets.initialize_on_precompile = true
+    if defined? ::HamlCoffeeAssets
+      config.hamlcoffee.basename = true
+    end
   end
 end

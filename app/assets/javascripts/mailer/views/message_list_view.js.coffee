@@ -2,7 +2,7 @@
 #= require ./message_item_view
 
 class OfflineMessenger.Views.MessageListView extends Backbone.View
-  template: JST['mailer/templates/message_list']
+  template: JST['message_list']
   tagName: 'section'
   className: 'mod-posts'
 

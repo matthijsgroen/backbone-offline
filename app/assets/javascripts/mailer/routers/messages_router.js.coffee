@@ -26,5 +26,9 @@ class OfflineMessenger.Routers.MessagesRouter extends Backbone.Router
       model = @collection.add content: ''
       composeView = new OfflineMessenger.Views.ComposeMessageView { model }
       $('body').append composeView.render().el
-
+      setTimeout(
+        ->
+          composeView.$('textarea').focus()
+        10
+      )
 
