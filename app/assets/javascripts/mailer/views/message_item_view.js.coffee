@@ -7,6 +7,7 @@ class OfflineMessenger.Views.MessageItemView extends Backbone.View
 
   initialize: ->
     @listenTo @model, 'change:content', @render
+    @listenTo @model, 'sync', @render
 
   render: ->
     @$el.toggleClass('is-new', @model.isNew())

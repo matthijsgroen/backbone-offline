@@ -6,6 +6,8 @@ class OfflineMessenger.Views.ComposeMessageView extends Backbone.View
   template: JST['compose_message']
   events:
     'keyup textarea': 'updateText'
+    'click button.save': 'storeContent'
+    'click button.cancel': 'closeView'
 
   render: ->
     @$el.html @template this
@@ -13,3 +15,9 @@ class OfflineMessenger.Views.ComposeMessageView extends Backbone.View
 
   updateText: ->
     @model.set content: @$('textarea').val()
+
+  storeContent: ->
+    @trigger 'save', this
+
+  closeView: ->
+    @trigger 'close', this

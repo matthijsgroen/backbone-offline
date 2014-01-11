@@ -25,6 +25,17 @@ class OfflineMessenger.Routers.MessagesRouter extends Backbone.Router
       @navigate 'compose/new'
       model = @collection.add content: ''
       composeView = new OfflineMessenger.Views.ComposeMessageView { model }
+
+      @listenTo composeView, 'save', (view) =>
+        model.save()
+        view.remove()
+        @navigate ''
+
+      @listenTo composeView, 'close', (view) =>
+        model.destroy()
+        view.remove()
+        @navigate ''
+
       $('body').append composeView.render().el
       setTimeout(
         ->

@@ -16,7 +16,7 @@ BackboneOffline::Application.routes.draw do
   #}
 
   namespace :api do
-    resources :messages, only: :index
+    resources :messages, only: [:index, :create, :show]
   end
 
   root 'welcome#index'

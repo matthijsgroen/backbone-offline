@@ -9,6 +9,7 @@ class OfflineMessenger.Views.MessageListView extends Backbone.View
   initialize: ->
     @listenTo @collection, 'add remove', @updateCounter
     @listenTo @collection, 'add', @addView
+    @listenTo @collection, 'remove', @removeView
     @itemViews = []
 
   render: ->
@@ -31,4 +32,14 @@ class OfflineMessenger.Views.MessageListView extends Backbone.View
     view = new OfflineMessenger.Views.MessageItemView { model }
     @itemViews.push view
     @$('ol').append view.render().el
+
+  removeView: (model) ->
+    updatedViews = []
+    for view in @itemViews
+      if view.model is model
+        view.remove()
+      else
+        updatedViews.push view
+    @itemViews = updatedViews
+
 
