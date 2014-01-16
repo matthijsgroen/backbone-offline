@@ -5,10 +5,10 @@ class OfflineMessenger.Views.OfflineSyncView extends Backbone.View
   template: JST['offline_sync']
 
   initialize: ->
-    @listenTo Backbone.offlineSync, 'update:syncList', @render
+    #@listenTo Backbone.offlineSync, 'update:syncList', @render
 
   render: ->
     presenter =
-      amountUnprocessed: Backbone.offlineSync.syncList().length
+      amountUnprocessed: 0 #Backbone.offlineSync.syncList().length
     @$el.html @template presenter
     this

@@ -7,3 +7,6 @@
 [submodule "vendor/assets/javascripts/marked"]
 	path = vendor/assets/javascripts/marked
 	url = https://github.com/chjj/marked.git
+[submodule "vendor/assets/javascripts/dualstorage"]
+	path = vendor/assets/javascripts/dualstorage
+	url = https://github.com/nilbus/Backbone.dualStorage.git

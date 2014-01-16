@@ -13,4 +13,5 @@
 #= require jquery
 #= require jquery_ujs
 #= require ./mailer/mailer
-#= require ./offline/synchronizer
+#  require ./offline/synchronizer
+#= require dualstorage/backbone.dualstorage
