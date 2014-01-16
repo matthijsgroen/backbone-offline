@@ -1,7 +1,9 @@
 
-Backbone.backendSync = Backbone.sync
 
-_.extend Backbone,
+class OfflineSync
+
+  constructor: ({ @backendSync }) ->
+
   syncList: ->
     JSON.parse(localStorage['toSync'] || '[]')
 
@@ -24,7 +26,7 @@ _.extend Backbone,
       )
     defer.promise()
 
-  updateDataWithSynchList: (data, url) ->
+  updateDataWithSyncList: (data, url) ->
     # synchronize data with synclist
     for sync in @syncList()
       if sync.url is url
@@ -37,28 +39,30 @@ _.extend Backbone,
     for sync in @syncList()
       modelId = sync.data.id
 
-      for collection in Backbone.offlineModels
+      for collection in @offlineModels
         if model = collection.get?(modelId)
           model.set id: null
-          Backbone.backendSync(sync.method, model, sync.options)
+          @backendSync(sync.method, model, sync.options)
           localStorage['toSync'] = JSON.stringify []
+          @trigger('update:syncList', this, [])
 
   offlineModels: []
 
   sync: (method, model, options) ->
     url = _.result(model, 'url')
 
-    unless _.contains(Backbone.offlineModels, model)
-      Backbone.offlineModels.push model
+    unless _.contains(@offlineModels, model)
+      @offlineModels.push model
 
     if method is 'create'
       model.set id: 'ol1'
 
       data = model.toJSON()
-      synclist = Backbone.syncList()
+      synclist = @syncList()
 
       synclist.push { url: url, data: data, method: method }
       localStorage['toSync'] = JSON.stringify synclist
+      @trigger('update:syncList', this, synclist)
 
       defer = $.Deferred()
       setTimeout(
@@ -69,8 +73,14 @@ _.extend Backbone,
         options.success(data)
 
     if method is 'read'
-      Backbone.fetchModelData(method, model, options).then (data) ->
-        data = Backbone.updateDataWithSynchList(data, url)
+      @fetchModelData(method, model, options).then (data) =>
+        data = @updateDataWithSyncList(data, url)
         options.success(data)
-        Backbone.processSyncList()
+        @processSyncList()
 
+_.extend OfflineSync::, Backbone.Events
+
+Backbone.offlineSync = new OfflineSync
+  backendSync: Backbone.sync
+
+Backbone.sync = -> Backbone.offlineSync.sync(arguments...)
